@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { CssBaseline, Container, Typography } from '@mui/material';
+import TableDataCard from './TableDataCard';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CssBaseline />
+      <Container>
+        <Typography variant="h2" component="h1" gutterBottom>
+          Table Tennis Tournament
+        </Typography>
+        <TableDataCard />
+      </Container>
     </div>
   );
 }
 
 export default App;
+
