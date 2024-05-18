@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Grid,
-  Container,
-  Box,
-} from "@mui/material";
+import { Typography, Container, Box } from "@mui/material";
 
 const defaultTables = Array.from({ length: 21 }, (_, i) => ({
   Tisch: i + 1,
@@ -63,141 +56,154 @@ const TableDataCard = () => {
   ];
 
   return (
-    <Container>
-      <Grid container spacing={3}>
+    <Container
+      sx={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: 0,
+      }}
+    >
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateRows: "repeat(4, 1fr)",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 1,
+          flex: "1 1 auto",
+          maxHeight: "69vh", // Set the maximum height for the grid
+          width: "100%",
+        }}
+      >
         {/* 4x4 Grid for tables 1 through 16 in the desired order */}
         {orderedTables.map((item, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <Card sx={{ border: "none", boxShadow: "none" }}>
-              <CardContent
-                sx={{ padding: 0, "&:last-child": { paddingBottom: 0 } }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    height: "200px",
-                    border: "1px solid #000",
-                    position: "relative",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      height: "50%",
-                      borderBottom: "1px solid #000",
-                    }}
-                  >
-                    {item["Spieler 1"].map((player, idx) => (
-                      <Typography key={idx} variant="body1">
-                        {player.last_name}
-                      </Typography>
-                    ))}
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      height: "50%",
-                    }}
-                  >
-                    {item["Spieler 2"].map((player, idx) => (
-                      <Typography key={idx} variant="body1">
-                        {player.last_name}
-                      </Typography>
-                    ))}
-                  </Box>
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      backgroundColor: "#fff",
-                      padding: "0 10px",
-                    }}
-                  >
-                    <Typography variant="h6">{item.Tisch}</Typography>
-                  </Box>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
+          <Box
+            key={index}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              border: "1px solid #000",
+              position: "relative",
+              height: "100%",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "50%",
+                borderBottom: "1px solid #000",
+              }}
+            >
+              {item["Spieler 1"].map((player, idx) => (
+                <Typography key={idx} variant="body1">
+                  {player.last_name}
+                </Typography>
+              ))}
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "50%",
+              }}
+            >
+              {item["Spieler 2"].map((player, idx) => (
+                <Typography key={idx} variant="body1">
+                  {player.last_name}
+                </Typography>
+              ))}
+            </Box>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "#fff",
+                padding: "0 10px",
+              }}
+            >
+              <Typography variant="h6">{item.Tisch}</Typography>
+            </Box>
+          </Box>
         ))}
-      </Grid>
-      <Grid container spacing={3} sx={{ marginTop: 3 }}>
+      </Box>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: 1,
+          flex: "0 1 30vh", // Set the height for the row
+          width: "100%",
+        }}
+      >
         {/* Single row of 5 tables for tables 17 through 21 */}
         {tableData.slice(16, 21).map((item, index) => (
-          <Grid item xs={12} sm={6} md={2.4} key={index}>
-            <Card sx={{ border: "none", boxShadow: "none" }}>
-              <CardContent
-                sx={{ padding: 0, "&:last-child": { paddingBottom: 0 } }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    height: "200px",
-                    border: "1px solid #000",
-                    position: "relative",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      height: "50%",
-                      borderBottom: "1px solid #000",
-                    }}
-                  >
-                    {item["Spieler 1"].map((player, idx) => (
-                      <Typography key={idx} variant="body1">
-                        {player.last_name}
-                      </Typography>
-                    ))}
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      height: "50%",
-                    }}
-                  >
-                    {item["Spieler 2"].map((player, idx) => (
-                      <Typography key={idx} variant="body1">
-                        {player.last_name}
-                      </Typography>
-                    ))}
-                  </Box>
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      backgroundColor: "#fff",
-                      padding: "0 10px",
-                    }}
-                  >
-                    <Typography variant="h6">{item.Tisch}</Typography>
-                  </Box>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
+          <Box
+            key={index}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              border: "1px solid #000",
+              position: "relative",
+              height: "100%",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "50%",
+                borderBottom: "1px solid #000",
+              }}
+            >
+              {item["Spieler 1"].map((player, idx) => (
+                <Typography key={idx} variant="body1">
+                  {player.last_name}
+                </Typography>
+              ))}
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "50%",
+              }}
+            >
+              {item["Spieler 2"].map((player, idx) => (
+                <Typography key={idx} variant="body1">
+                  {player.last_name}
+                </Typography>
+              ))}
+            </Box>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "#fff",
+                padding: "0 10px",
+              }}
+            >
+              <Typography variant="h6">{item.Tisch}</Typography>
+            </Box>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Container>
   );
 };
