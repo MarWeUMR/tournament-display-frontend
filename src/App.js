@@ -1,5 +1,5 @@
 import React from "react";
-import { CssBaseline, Container, Typography } from "@mui/material";
+import { CssBaseline, Container } from "@mui/material";
 import TableDataCard from "./TableDataCard";
 
 function App() {
@@ -7,9 +7,6 @@ function App() {
     <div>
       <CssBaseline />
       <Container>
-        <Typography variant="h2" component="h1" gutterBottom>
-          Table Tennis Tournament
-        </Typography>
         <TableDataCard />
       </Container>
     </div>
