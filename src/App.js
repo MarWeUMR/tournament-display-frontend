@@ -1,6 +1,6 @@
-import React from 'react';
-import { CssBaseline, Container, Typography } from '@mui/material';
-import TableDataCard from './TableDataCard';
+import React from "react";
+import { CssBaseline, Container, Typography } from "@mui/material";
+import TableDataCard from "./TableDataCard";
 
 function App() {
   return (
@@ -17,4 +17,3 @@ function App() {
 }
 
 export default App;
-
