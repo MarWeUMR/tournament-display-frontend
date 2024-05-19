@@ -55,10 +55,33 @@ const TableDataCard = () => {
     tableData[12],
   ];
 
+  // Define the dimensions based on the known display size
+  const totalHeight = 980; // Total height of the display
+  const gridHeight = 700; // Height for the 4x4 grid
+  const gap = 10; // Gap between tables and between the grid and the row
+  const verticalGap = 10; // Vertical gap between rows in the grid
+  const gapBetweenGridAndRow = 20; // Configurable gap between the grid and the last row
+
+  // Calculate the total height for the grid including vertical gaps
+  const totalGridHeight = gridHeight + 3 * verticalGap;
+
+  // Calculate the height for the single row
+  const rowHeight = totalHeight - totalGridHeight - gapBetweenGridAndRow;
+
+  const tableWidthRow = 540; // Width for each table in the row
+
+  // Calculate the total width for the last row
+  const totalWidthRow = 5 * tableWidthRow + 4 * gap;
+
+  // Calculate the width for each table in the grid
+  const tableWidthGrid = (totalWidthRow - 3 * gap) / 4;
+
   return (
     <Container
+      maxWidth={false} // Remove any maximum width constraints
       sx={{
-        height: "100vh",
+        height: `${totalHeight}px`, // Total height of the display
+        width: "100%", // Use all available width
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -69,12 +92,12 @@ const TableDataCard = () => {
       <Box
         sx={{
           display: "grid",
-          gridTemplateRows: "repeat(4, 1fr)",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 1,
-          flex: "1 1 auto",
-          maxHeight: "69vh", // Set the maximum height for the grid
+          gridTemplateRows: `repeat(4, ${gridHeight / 4}px)`,
+          gridTemplateColumns: `repeat(4, ${tableWidthGrid}px)`, // Use calculated width for grid columns
+          gap: `${gap}px ${verticalGap}px`, // Set horizontal and vertical gaps
+          height: `${totalGridHeight}px`, // Set the total height for the grid including gaps
           width: "100%",
+          justifyContent: "center", // Center the grid horizontally
         }}
       >
         {/* 4x4 Grid for tables 1 through 16 in the desired order */}
@@ -88,6 +111,7 @@ const TableDataCard = () => {
               border: "1px solid #000",
               position: "relative",
               height: "100%",
+              width: "100%",
             }}
           >
             <Box
@@ -139,10 +163,12 @@ const TableDataCard = () => {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
-          gap: 1,
-          flex: "0 1 30vh", // Set the height for the row
+          gridTemplateColumns: `repeat(5, ${tableWidthRow}px)`, // Use original width for row columns
+          gap: `${gap}px`,
+          height: `${rowHeight}px`, // Set the height for the row
           width: "100%",
+          justifyContent: "center", // Center the row horizontally
+          marginTop: `${gapBetweenGridAndRow}px`, // Add gap between grid and row
         }}
       >
         {/* Single row of 5 tables for tables 17 through 21 */}
@@ -156,6 +182,7 @@ const TableDataCard = () => {
               border: "1px solid #000",
               position: "relative",
               height: "100%",
+              width: "100%",
             }}
           >
             <Box
