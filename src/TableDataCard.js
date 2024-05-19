@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Container, Box } from "@mui/material";
+import { Container, Box } from "@mui/material";
+import TableBox from "./TableBox";
 
 const defaultTables = Array.from({ length: 21 }, (_, i) => ({
   Tisch: i + 1,
@@ -81,10 +82,10 @@ const TableDataCard = () => {
 
   return (
     <Container
-      maxWidth={false} // Remove any maximum width constraints
+      maxWidth={false}
       sx={{
-        height: `${totalHeight}px`, // Total height of the display
-        width: "100%", // Use all available width
+        height: `${totalHeight}px`,
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -96,146 +97,30 @@ const TableDataCard = () => {
         sx={{
           display: "grid",
           gridTemplateRows: `repeat(4, ${gridHeight / 4}px)`,
-          gridTemplateColumns: `repeat(4, ${tableWidthGrid}px)`, // Use calculated width for grid columns
-          gap: `${gap}px ${verticalGap}px`, // Set horizontal and vertical gaps
-          height: `${totalGridHeight}px`, // Set the total height for the grid including gaps
+          gridTemplateColumns: `repeat(4, ${tableWidthGrid}px)`,
+          gap: `${gap}px ${verticalGap}px`,
+          height: `${totalGridHeight}px`,
           width: "100%",
-          justifyContent: "center", // Center the grid horizontally
+          justifyContent: "center",
         }}
       >
-        {/* 4x4 Grid for tables 1 through 16 in the desired order */}
         {orderedTables.map((item, index) => (
-          <Box
-            key={index}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              border: "1px solid #000",
-              position: "relative",
-              height: "100%",
-              width: "100%",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "50%",
-                borderBottom: "1px solid #000",
-              }}
-            >
-              {item["Spieler 1"].map((player, idx) => (
-                <Typography key={idx} variant="body1" sx={{ fontSize }}>
-                  {player.last_name}
-                </Typography>
-              ))}
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "50%",
-              }}
-            >
-              {item["Spieler 2"].map((player, idx) => (
-                <Typography key={idx} variant="body1" sx={{ fontSize }}>
-                  {player.last_name}
-                </Typography>
-              ))}
-            </Box>
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "#fff",
-                padding: "0 10px",
-              }}
-            >
-              <Typography variant="h6" sx={{ fontSize }}>
-                {item.Tisch}
-              </Typography>
-            </Box>
-          </Box>
+          <TableBox key={index} item={item} fontSize={fontSize} />
         ))}
       </Box>
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: `repeat(5, ${tableWidthRow}px)`, // Use original width for row columns
+          gridTemplateColumns: `repeat(5, ${tableWidthRow}px)`,
           gap: `${gap}px`,
-          height: `${rowHeight}px`, // Set the height for the row
+          height: `${rowHeight}px`,
           width: "100%",
-          justifyContent: "center", // Center the row horizontally
-          marginTop: `${gapBetweenGridAndRow}px`, // Add gap between grid and row
+          justifyContent: "center",
+          marginTop: `${gapBetweenGridAndRow}px`,
         }}
       >
-        {/* Single row of 5 tables for tables 17 through 21 */}
         {tableData.slice(16, 21).map((item, index) => (
-          <Box
-            key={index}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              border: "1px solid #000",
-              position: "relative",
-              height: "100%",
-              width: "100%",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "50%",
-                borderBottom: "1px solid #000",
-              }}
-            >
-              {item["Spieler 1"].map((player, idx) => (
-                <Typography key={idx} variant="body1" sx={{ fontSize }}>
-                  {player.last_name}
-                </Typography>
-              ))}
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "50%",
-              }}
-            >
-              {item["Spieler 2"].map((player, idx) => (
-                <Typography key={idx} variant="body1" sx={{ fontSize }}>
-                  {player.last_name}
-                </Typography>
-              ))}
-            </Box>
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "#fff",
-                padding: "0 10px",
-              }}
-            >
-              <Typography variant="h6" sx={{ fontSize }}>
-                {item.Tisch}
-              </Typography>
-            </Box>
-          </Box>
+          <TableBox key={index} item={item} fontSize={fontSize} />
         ))}
       </Box>
     </Container>
