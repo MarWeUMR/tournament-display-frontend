@@ -57,7 +57,7 @@ const TableDataCard = () => {
 
   // Define the dimensions based on the known display size
   const totalHeight = 980; // Total height of the display
-  const gridHeight = 700; // Height for the 4x4 grid
+  const gridHeight = 730; // Height for the 4x4 grid
   const gap = 10; // Gap between tables and between the grid and the row
   const verticalGap = 10; // Vertical gap between rows in the grid
   const gapBetweenGridAndRow = 20; // Configurable gap between the grid and the last row
@@ -75,6 +75,9 @@ const TableDataCard = () => {
 
   // Calculate the width for each table in the grid
   const tableWidthGrid = (totalWidthRow - 3 * gap) / 4;
+
+  // Define a variable for the font size
+  const fontSize = "2.5rem"; // Adjust this value to change the font size
 
   return (
     <Container
@@ -125,7 +128,7 @@ const TableDataCard = () => {
               }}
             >
               {item["Spieler 1"].map((player, idx) => (
-                <Typography key={idx} variant="body1">
+                <Typography key={idx} variant="body1" sx={{ fontSize }}>
                   {player.last_name}
                 </Typography>
               ))}
@@ -140,7 +143,7 @@ const TableDataCard = () => {
               }}
             >
               {item["Spieler 2"].map((player, idx) => (
-                <Typography key={idx} variant="body1">
+                <Typography key={idx} variant="body1" sx={{ fontSize }}>
                   {player.last_name}
                 </Typography>
               ))}
@@ -155,7 +158,9 @@ const TableDataCard = () => {
                 padding: "0 10px",
               }}
             >
-              <Typography variant="h6">{item.Tisch}</Typography>
+              <Typography variant="h6" sx={{ fontSize }}>
+                {item.Tisch}
+              </Typography>
             </Box>
           </Box>
         ))}
@@ -196,7 +201,7 @@ const TableDataCard = () => {
               }}
             >
               {item["Spieler 1"].map((player, idx) => (
-                <Typography key={idx} variant="body1">
+                <Typography key={idx} variant="body1" sx={{ fontSize }}>
                   {player.last_name}
                 </Typography>
               ))}
@@ -211,7 +216,7 @@ const TableDataCard = () => {
               }}
             >
               {item["Spieler 2"].map((player, idx) => (
-                <Typography key={idx} variant="body1">
+                <Typography key={idx} variant="body1" sx={{ fontSize }}>
                   {player.last_name}
                 </Typography>
               ))}
@@ -226,7 +231,9 @@ const TableDataCard = () => {
                 padding: "0 10px",
               }}
             >
-              <Typography variant="h6">{item.Tisch}</Typography>
+              <Typography variant="h6" sx={{ fontSize }}>
+                {item.Tisch}
+              </Typography>
             </Box>
           </Box>
         ))}
